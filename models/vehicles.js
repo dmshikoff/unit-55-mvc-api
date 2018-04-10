@@ -49,5 +49,32 @@ function create (body) {
     return response
 }
 
-module.exports = { getAll, create, getOne }
+function update(specificVehicleId, body){
+    const specificVehicle = vehicles.find(vehicle => vehicle.id === specificVehicleId)
+    const type = body.type
+    const make = body.make
+    const model = body.model
+    const color = body.color
+    if(type){
+        specificVehicle.type = type
+    }
+    if(make){
+        specificVehicle.make = make
+    }
+    if(model){
+        specificVehicle.model = model
+    }
+    if(color){
+        specificVehicle.color = color
+    }
+    return specificVehicle
+}
+
+function destroy(specificVehiclesId){
+    const specificVehicle = vehicles.find(vehicle => vehicle.id === specificVehicleId)
+    vehicles.splice(vehicles.indexOf(specificVehicle), 1)
+    return specificVehicle
+}
+
+module.exports = { getAll, create, getOne, update, destroy }
 

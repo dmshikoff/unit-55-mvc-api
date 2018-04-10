@@ -22,4 +22,16 @@ function create(req, res, next) {
       res.status(201).json({ data: result })
 }
 
-module.exports = { getAll, create, getOne }
+function update(req, res, next) {
+    specificVehicleId = req.params.id
+    const data = model.update(specificVehicleId, req.body)
+    res.status(200).json({ data })
+}
+
+function destroy(req, res, next) {
+    specificVehicleId = req.params.id
+    const data = model.destroy(specificVehicleId)
+    res.status(200).json({data})
+}
+
+module.exports = { getAll, create, getOne, update, destroy }
